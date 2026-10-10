@@ -1,5 +1,7 @@
 # dsh-side-chat
 
+[![CI](https://github.com/zycFrancis/dsh-side-chat/actions/workflows/ci.yml/badge.svg)](https://github.com/zycFrancis/dsh-side-chat/actions/workflows/ci.yml)
+
 English | [中文](README.md)
 
 Side questions for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh): `/side` (alias `/btw`) answers a quick question from the current session's context in a streaming overlay, with **zero pollution of the main conversation's model context**. Modeled after Claude Code's `/btw` and Codex's `/side`.

@@ -1,5 +1,7 @@
 # dsh-side-chat
 
+[![CI](https://github.com/zycFrancis/dsh-side-chat/actions/workflows/ci.yml/badge.svg)](https://github.com/zycFrancis/dsh-side-chat/actions/workflows/ci.yml)
+
 [English](README.en.md) | 中文
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh) 增加 **侧问**：`/side`（别名 `/btw`）基于当前会话上下文快速提问，答案在浮层里流式展示，**完全不进入主对话的模型上下文**。对标 Claude Code 的 `/btw` 与 Codex 的 `/side`。
