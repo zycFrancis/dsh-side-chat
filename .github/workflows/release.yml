@@ -1,0 +1,48 @@
+# tag 推送(v*)自动创建 GitHub Release:
+# 先在干净环境跑全部测试作为门禁,通过后从 CHANGELOG.md 提取该版本小节
+# 作为发布说明;tag 含 "-"(如 rc)时自动标记为 prerelease。
+# CHANGELOG.md 缺少对应小节时直接失败——发布说明是本仓库版本纪律的一部分。
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: 安装依赖
+        run: npm install --no-fund --no-audit
+      - name: 测试
+        run: npm test
+      - name: 提取 CHANGELOG 对应小节
+        id: changelog
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION="${TAG#v}"
+          SECTION=$(awk -v ver="## ${VERSION}" '
+            /^## / { if (found) exit; if (index($0, ver) == 1) found = 1; next }
+            found { print }
+          ' CHANGELOG.md | sed -e '/./,$!d')
+          if [ -z "$SECTION" ]; then
+            echo "CHANGELOG.md 中没有 ${TAG} 对应的小节" >&2
+            exit 1
+          fi
+          {
+            echo "body<<CHANGELOG_EOF"
+            printf '%s\n' "$SECTION"
+            echo "CHANGELOG_EOF"
+          } >> "$GITHUB_OUTPUT"
+      - name: 创建 Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body: ${{ steps.changelog.outputs.body }}
+          prerelease: ${{ contains(github.ref_name, '-') }}

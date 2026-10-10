@@ -1,6 +1,6 @@
 {
   "name": "dsh-side-chat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "description": "dsh 侧问插件:/side /btw 基于当前会话上下文发起无工具独立问答,浮层流式展示,答案不进入主对话模型上下文。Side questions for DeepSeek Harness: /side and /btw answer from current session context in a streaming overlay, with zero main-history pollution.",

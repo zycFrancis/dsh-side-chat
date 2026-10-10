@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.1 (2026-10-10)
+
+- 新增 GitHub Actions CI：push/PR 触发，Node 22/24 矩阵，干净环境安装依赖并跑全部
+  测试；README 双语顶部加 CI 徽章。
+- 新增 tag 自动发布流水线：`v*` tag 触发，测试通过后从 CHANGELOG.md 提取该版本小节
+  作为 Release 说明（缺失即失败），rc 后缀自动标记 prerelease。
+- devDependencies 显式声明 `@deepseek-ai/cordis@~4.0.4`（测试直接引用，与
+  dsh-typert-protocol 的 peer 范围一致），CI 不依赖提升碰运气。
+- 插件功能与运行时代码无变化。
+
 ## 1.0.0 (2026-10-10)
 
 - 首个可用版本：`/side`、`/btw` 双命令侧问，基于当前会话模型可见历史的参考摘要
