@@ -1,6 +1,6 @@
 {
   "name": "dsh-side-chat",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "侧问 /side /btw：基于当前会话上下文的独立问答，答案不进入主对话模型上下文",

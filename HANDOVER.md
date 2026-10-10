@@ -40,24 +40,23 @@ Web 客户端半（`client.js`，ModuleLoader 模块 id = 包名）：
 24/24 通过（Host 纯函数 12 + 真实 cordis Context 服务冒烟 6 + 客户端描述符/帧归约/
 markdown/挂载注册 6）。本地 node_modules 符号链接指向 Desktop app 内置包仅供测试。
 
-## 未完成
+## 未完成（v2 候选）
 
-- [ ] GUI 实测（需先刷新页面让客户端模块进入 boot graph）：流式浮层、Esc/复制/
-      清空/翻历史、turn 进行中提问、明暗主题、headless 文本可见、
-      token 计量断言侧问不进主上下文
-- [ ] 浮层"fork 深挖"按钮（v2，复用内置 sessions.fork/subagent fork）
-- [ ] 原生消息重放研究（吃前缀缓存，v2）
+- [ ] 浮层"fork 深挖"按钮（复用内置 sessions.fork/subagent fork，对齐 Codex /side 与 Claude 的 f 键）
+- [ ] 原生消息重放研究（吃前缀缓存省成本）
+- [ ] 细分体验项：turn 进行中提问的实测、明暗主题双主题截图核验、headless 文本可见性确认、
+      token 计量断言侧问不进主上下文（核心链路已实测通过，这些为补充核验）
 
-## 安装状态（2026-10-10）
+## 安装与验证状态（2026-10-10，v1.0.0）
 
 - `plugin_manager install_bundle` → `application: "applied"`、`warnings: []`、
   pnpm exitCode 0；profile package.json 已写入 link 依赖与 bundle 选择
-- 宿主半经 HMR 生效；客户端半需页面刷新后随 boot graph 加载
-  （本机未跑 dev:web，无免刷新热载）
+- **GUI 实测通过（用户确认）**：页面刷新后 `/side` 正常，浮层流式展示无异常
+- 单测 24/24（Host 纯函数 + 真实 cordis Context 冒烟 + 客户端描述符/帧归约/挂载）
 - 验证手段限制：inspect 的 Service 目录是静态生成的（`api-catalog.js`），
-  看不到三方服务，不能作为激活证据；本会话 cordis_inspect_query 的 input
-  参数有序列化故障（"must be an object"），无法按 root 查 slot occupants；
-  web 页面 curl 被 admission 拒绝。激活证据 = install 结果字段 + 24 项测试。
+  看不到三方服务；本会话 cordis_inspect_query 的 input 参数有序列化故障
+  （"must be an object"），无法按 root 查 slot occupants；web 页面 curl 被
+  admission 拒绝。激活证据 = install 结果字段 + 单测 + 用户 GUI 实测。
 
 ## 已知风险
 
