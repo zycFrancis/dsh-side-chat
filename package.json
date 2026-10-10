@@ -1,0 +1,19 @@
+{
+  "name": "dsh-side-chat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "侧问 /side /btw：基于当前会话上下文的独立问答，答案不进入主对话模型上下文",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-typert-protocol": "0.2.0-rc.2",
+    "@deepseek-ai/schemastery": "^3.18.4"
+  }
+}

@@ -1,0 +1,5 @@
+# dsh-side-chat bundle patch：宿主侧插件行（Web 客户端行随客户端实现追加）。
+- insert:
+    - id: side-chat
+      name: dsh-side-chat
+      config: {}
