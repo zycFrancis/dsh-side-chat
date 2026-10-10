@@ -3,13 +3,42 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "侧问 /side /btw：基于当前会话上下文的独立问答，答案不进入主对话模型上下文",
+  "description": "dsh 侧问插件:/side /btw 基于当前会话上下文发起无工具独立问答,浮层流式展示,答案不进入主对话模型上下文。Side questions for DeepSeek Harness: /side and /btw answer from current session context in a streaming overlay, with zero main-history pollution.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zycFrancis/dsh-side-chat.git"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "side-question",
+    "cordis"
+  ],
+  "license": "MIT",
+  "icon": "./icon.svg",
+  "scripts": {
+    "test": "node --test test/host.test.mjs test/service.test.mjs test/client.test.mjs"
+  },
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",
     "./package.json": "./package.json",
     "./locale/*.json": "./locale/*.json"
   },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "icon.svg",
+    "docs/*.md"
+  ],
   "dsh": {
     "bundle": { "patch": "./cordis.patch.yml" },
     "client": {
