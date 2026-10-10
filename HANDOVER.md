@@ -42,10 +42,22 @@ markdown/挂载注册 6）。本地 node_modules 符号链接指向 Desktop app 
 
 ## 未完成
 
-- [ ] `plugin_manager install_bundle` 安装 + GUI 实测（流式浮层、turn 进行中提问、
-      明暗主题、headless 文本可见、token 计量断言侧问不进主上下文）
+- [ ] GUI 实测（需先刷新页面让客户端模块进入 boot graph）：流式浮层、Esc/复制/
+      清空/翻历史、turn 进行中提问、明暗主题、headless 文本可见、
+      token 计量断言侧问不进主上下文
 - [ ] 浮层"fork 深挖"按钮（v2，复用内置 sessions.fork/subagent fork）
 - [ ] 原生消息重放研究（吃前缀缓存，v2）
+
+## 安装状态（2026-10-10）
+
+- `plugin_manager install_bundle` → `application: "applied"`、`warnings: []`、
+  pnpm exitCode 0；profile package.json 已写入 link 依赖与 bundle 选择
+- 宿主半经 HMR 生效；客户端半需页面刷新后随 boot graph 加载
+  （本机未跑 dev:web，无免刷新热载）
+- 验证手段限制：inspect 的 Service 目录是静态生成的（`api-catalog.js`），
+  看不到三方服务，不能作为激活证据；本会话 cordis_inspect_query 的 input
+  参数有序列化故障（"must be an object"），无法按 root 查 slot occupants；
+  web 页面 curl 被 admission 拒绝。激活证据 = install 结果字段 + 24 项测试。
 
 ## 已知风险
 
